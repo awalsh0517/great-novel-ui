@@ -1,12 +1,12 @@
-const models = require('../models')
+import models from '../models'
 
-const getAllAuthors = async (request, response) => {
+export const getAllAuthors = async (request, response) => {
   const authors = await models.Authors.findAll()
 
   return response.send(authors)
 }
 
-const getAuthorByIdOrName = async (request, response) => {
+export const getAuthorByIdOrName = async (request, response) => {
   const { identifier } = request.params
 
   const author = await models.Authors.findOne({
@@ -26,5 +26,3 @@ const getAuthorByIdOrName = async (request, response) => {
     ? response.send(author)
     : response.sendStatus(404)
 }
-
-module.exports = { getAllAuthors, getAuthorByIdOrName }
